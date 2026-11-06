@@ -4,7 +4,7 @@ import sys
 
 
 class Letter:
-    def __init__(self, letter: str, freq: int):
+    def __init__(self, letter: str, freq: int) -> None:
         self.letter: str = letter
         self.freq: int = freq
         self.bitstring: dict[str, str] = {}
@@ -14,7 +14,9 @@ class Letter:
 
 
 class TreeNode:
-    def __init__(self, freq: int, left: Letter | TreeNode, right: Letter | TreeNode):
+    def __init__(
+        self, freq: int, left: Letter | TreeNode, right: Letter | TreeNode
+    ) -> None:
         self.freq: int = freq
         self.left: Letter | TreeNode = left
         self.right: Letter | TreeNode = right
@@ -74,9 +76,7 @@ def huffman(file_path: str) -> None:
     """
     letters_list = parse_file(file_path)
     root = build_tree(letters_list)
-    letters = {
-        k: v for letter in traverse_tree(root, "") for k, v in letter.bitstring.items()
-    }
+    letters = {**letter.bitstring for letter in traverse_tree(root, "")}
     print(f"Huffman Coding  of {file_path}: ")
     with open(file_path) as f:
         while True:

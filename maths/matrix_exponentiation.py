@@ -1,13 +1,13 @@
-"""Matrix Exponentiation"""
-
-import timeit
-
 """
 Matrix Exponentiation is a technique to solve linear recurrences in logarithmic time.
 You read more about it here:
 https://zobayer.blogspot.com/2010/11/matrix-exponentiation.html
 https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 """
+
+from __future__ import annotations
+
+import timeit
 
 
 class Matrix:
@@ -55,10 +55,11 @@ def fibonacci_with_matrix_exponentiation(n: int, f1: int, f2: int) -> int:
     89
     """
     # Trivial Cases
-    if n == 1:
-        return f1
-    elif n == 2:
-        return f2
+    match n:
+        case 1:
+            return f1
+        case 2:
+            return f2
     matrix = Matrix([[1, 1], [1, 0]])
     matrix = modular_exponentiation(matrix, n - 2)
     return f2 * matrix.t[0][0] + f1 * matrix.t[0][1]
@@ -81,10 +82,11 @@ def simple_fibonacci(n: int, f1: int, f2: int) -> int:
     89
     """
     # Trivial Cases
-    if n == 1:
-        return f1
-    elif n == 2:
-        return f2
+    match n:
+        case 1:
+            return f1
+        case 2:
+            return f2
 
     n -= 2
 
